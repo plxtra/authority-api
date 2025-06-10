@@ -11,7 +11,7 @@ export const githubHost = 'plxtra.github.io';
 // https://astro.build/config
 export default defineConfig({
     site: canonicalSite,
-	base: '/user-authority-api/',
+	base: '/authority-api/',
 
 	trailingSlash: 'always',
 
@@ -29,7 +29,7 @@ export default defineConfig({
         }),
 
 		starlight({
-			title: 'User Authority API',
+			title: 'Authority API',
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/plxtra/' },
 				{ icon: 'zulip', label: 'Chat groups', href: 'https://plxtra.zulipchat.com/' },
@@ -37,12 +37,12 @@ export default defineConfig({
 			],
 			sidebar: [ // Update to align with your API structure
 				{
-					label: 'Plxtra',
-					link: 'https://plxtra.org/api/user-authority/',
-				},
-				{
 					label: 'Introduction',
 					slug: '',
+				},
+				{
+					label: 'Concepts',
+					autogenerate: { directory: 'concepts', collapsed: true },
 				},
 				{
 					label: 'Command Line Tools',
@@ -53,9 +53,14 @@ export default defineConfig({
 					autogenerate: { directory: 'rest', collapsed: true },
 				},
 				{
-					label: 'WebSocket API',
-					autogenerate: { directory: 'ws', collapsed: true },
+					label: 'Type Reference',
+					autogenerate: { directory: 'proto' },
 				},
+				{
+					label: 'Plxtra',
+					link: 'https://plxtra.org/api/authority/',
+					attrs: { style: 'font-style: italic' },
+				}
 			],
 		}),
 	],

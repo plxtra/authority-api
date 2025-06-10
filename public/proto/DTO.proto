@@ -1,0 +1,63 @@
+syntax = "proto3";
+// Contains the data transfer objects for the REST API
+package Paritech.Authority.Protocol;
+
+import public "Authority.proto";
+
+//****************************************
+
+// Describes the associations from a root Asset
+message AssociationsFromAsset {
+	// The root Asset being described
+	Asset Root = 1;
+
+	// Associations from the root asset
+	repeated ToAssetAssociation Associations = 10;
+}
+
+// Describes the transitive associations from a root Asset
+message TransitiveAssociations {
+	// The root Asset being described
+	Asset Root = 1;
+
+	// Associations from the root asset. From Assets will not have context
+	repeated FullAssociation Associations = 10;
+}
+
+// Describes the associations to a root Asset
+message AssociationsToAsset {
+	// The root Asset being described
+	Asset Root = 1;
+
+	// Associations to the root asset
+	repeated FromAssetAssociation Associations = 10;
+}
+
+// Describes an Association to an Asset from a root
+message ToAssetAssociation {
+	// The details of the Asset this association is to
+	Asset ToAsset = 1;
+
+	// The details of the Association
+	Association Association = 10;
+}
+
+// Describes an Association from an Asset to a root
+message FromAssetAssociation {
+	// The details of the Asset this association is from
+	Asset FromAsset = 1;
+
+	// The details of the Association
+	Association Association = 10;
+}
+
+// Describes an Association from an Asset to an Asset
+message FullAssociation {
+	// The details of the Asset this association is from
+	Asset FromAsset = 1;
+	// The details of the Asset this association is to
+	Asset ToAsset = 2;
+
+	// The details of the Association
+	Association Association = 10;
+}

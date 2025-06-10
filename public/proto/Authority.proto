@@ -1,0 +1,50 @@
+syntax = "proto3";
+// Data model for the Paritech Authority service
+package Paritech.Authority.Protocol;
+
+//****************************************
+
+// Describes an Asset Type
+message AssetType {
+	// The unique code identifying this Asset Type
+	string Code = 1;
+	
+	// Any metadata associated with the Asset Type
+	map<string, string> Metadata = 19;
+}
+
+// Describes an Asset
+message Asset {
+	// The unique code identifying this Asset
+	string Code = 1;
+	// The unique code of the Asset Type this Asset belongs to
+	string Type = 9;
+	
+	// Any application-specific context attached to this Asset
+	repeated AppContext Context = 10;
+}
+
+// Descripes the contextual data supplied by an Application
+message AppContext {
+	// The code identifying the Application
+	string Application = 1;
+
+	// Any identifiers associated with the Application
+	repeated ID IDs = 10;
+	// Any metadata associated with the Application
+	map<string, string> Metadata = 19;
+}
+
+// Describes an Association between two Assets
+message Association {
+	// Any application-specific context attached to this association
+	repeated AppContext Context = 10;
+}
+
+// An identifier with one or more values
+message ID {
+	// The identifier name
+	string Name = 1;
+	// The values associated with this identifier
+	map<string, string> Values = 2;
+}
