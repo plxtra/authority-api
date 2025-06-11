@@ -24,16 +24,16 @@ The CLI tool can provide basic documentation on the features and arguments avail
 
 `Paritech.Authority.Control Help Asset Define`
 
-*List valid OMS hubs*
+*List valid Authority services*
 
 `Paritech.Authority.Control Service List`
 
-An Authority Service is the front-end for an installation of the Authority Service. In XOSP, this should output a single record.
+A Service is the front-end for an installation of the Authority Service. In XOSP, this should output a single record.
 
 ## Basic Commands
 
 Full commands take the format of `Action Feature [Args]`.
 
-*Test Hub connectivity*
+*Test connectivity*
 
 `Paritech.Authority.Control Service Test XOSP`

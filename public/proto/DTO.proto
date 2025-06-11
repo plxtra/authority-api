@@ -20,7 +20,7 @@ message TransitiveAssociations {
 	// The root Asset being described
 	Asset Root = 1;
 
-	// Associations from the root asset. From Assets will not have context
+	// Transitive associations from the root asset. From Asset data will not include context
 	repeated FullAssociation Associations = 10;
 }
 

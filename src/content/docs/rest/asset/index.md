@@ -4,19 +4,19 @@ sidebar:
   label: /asset
 ---
 
-The Asset Controller is responsible for retrieving and manipulating Asset definitions.
+The `asset` URL provides bulk management of Assets.
 
-## Retrieve all known Assets
+## Retrieve all Assets
 
 `GET /asset`
 
-Retrieves all Assets registered with the Authority service.
+Retrieves all registered Assets.
 
 ### Query Parameters
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| app       | Optional | The identifier of an Application. Will only return Assets that have context data mentioning this Application. Can be specified multiple times to search for multiple Applications, where any match will return a result. |
+| app       | Optional | An Application identifier. Will only return Assets with context data for this Application.<br>Can be specified multiple times to include additional Applications. |
 
 ### Response
 
@@ -25,11 +25,11 @@ Retrieves all Assets registered with the Authority service.
 | 200  | Success | Content is an array of [AssetType](../../proto/authority/#assettype) objects. |
 | 422  | Failure | Invalid data was provided.<br>Content is a JSON array of one or more error codes describing the problem. |
 
-## Add or update multiple Assets
+## Add or update Assets
 
 `POST /asset`
 
-Adds or updates existing Asset registrations.
+Adds or updates multiple registered Assets simultaneously. The Context data will be merged with any existing registration.
 
 ### POST Body
 

@@ -4,13 +4,13 @@ sidebar:
   label: /type
 ---
 
-The Type Controller is responsible for retrieving and manipulating Asset Type definitions.
+The `type` URL provides bulk management of Asset Types.
 
 ## Retrieve all Asset Types
 
 `GET /type`
 
-Retrieves all Asset Types registered with the Authority service.
+Retrieves all registered Asset Types.
 
 ### Response
 
@@ -18,11 +18,11 @@ Retrieves all Asset Types registered with the Authority service.
 |------|---------|-------------|
 | 200  | Success | Content is an array of [AssetType](../../proto/authority/#assettype) objects. |
 
-## Add or update multiple Asset Types
+## Add or update Asset Types
 
 `POST /type`
 
-Adds or updates existing Asset Type registrations.
+Adds or updates multiple registered Asset Types simultaneously.
 
 ### POST Body
 

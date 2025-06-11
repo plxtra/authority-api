@@ -4,15 +4,15 @@ sidebar:
   label: /association
 ---
 
-The Association Controller is responsible for retrieving and manipulating the associations between Assets.
+The `association` URL provides bulk management of Associations.
 
 ## Add or update multiple Associations
 
 `POST /association`
 
-Adds or updates existing direct Associations from a single root Asset.
+Adds or updates direct Associations from an Asset.
 
-This method is able to create new Assets, including their metadata - it is not necessary to first register the Assets.
+This method will add or update Assets as necessary, for both the root and associated Assets. They do not need to be created first.
 
 ### POST Body
 

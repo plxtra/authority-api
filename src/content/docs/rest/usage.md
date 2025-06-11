@@ -7,11 +7,11 @@ sidebar:
 
 ## Connecting
 
-Connect to the OMS hub via HTTP at `http://oms.hub/` using HTTP/1.1, HTTP/2.0, or HTTP/3.0.
+Connect to the Authority service via HTTP at `http://authority/` using HTTP/1.1, HTTP/2.0, or HTTP/3.0.
 
 ## Authenticating
 
-The REST API requires an access token issued by a [registered OAuth Server](../identitysource/), with the appropriate Audience for the OMS service.
+The REST API requires an access token issued by the expected OAuth Server, with the appropriate Audience for the Authority service.
 
 ## Serialisation and Deserialisation
 
@@ -21,4 +21,4 @@ Most endpoints will support both JSON and binary Protobuf (`application/x-protob
 When an endpoint accepts or returns an array of Protobuf messages, this can be written with repeated `WriteDelimitedTo`, and read with repeated `ParseDelimitedFrom`.
 :::
 
-See [JSON Data Types](../../proto/overview/#json-data-types) for specific notes on JSON serialisation.
+See [JSON Data Types](../../proto/#json-serialisation) for specific notes on JSON serialisation.

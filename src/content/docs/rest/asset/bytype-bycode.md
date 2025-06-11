@@ -4,13 +4,13 @@ sidebar:
   label: /asset/bytype/$/bycode
 ---
 
-The Asset ByType ByCode URL allows for retrieval of Assets based on their codes.
+The `asset/bytype/<type>/bycode` URL provides bulk management of Assets by code.
 
-## Retrieve multiple Assets by Code
+## Retrieve Assets by code
 
 `GET /asset/bytype/<type>/bycode`
 
-Retrieves all Assets of the given type that match the supplied list of codes.
+Retrieves the listed Assets of the given type.
 
 ### URL Parameters
 
@@ -22,23 +22,23 @@ Retrieves all Assets of the given type that match the supplied list of codes.
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| code      | Optional | The identifier of an Asset. Can be specified multiple times to retrieve multiple Assets. |
-| app       | Optional | The identifier of an Application. Will only return Assets that have context data mentioning this Application.<br>Can be specified multiple times to search for multiple Applications, where any match will return a result. |
+| code      | Optional | An Asset code. Can be specified multiple times to retrieve additional Assets. |
+| app       | Optional | An Application identifier. Will only return Assets with context data for this Application.<br>Can be specified multiple times to include additional Applications. |
 
 ### Response
 
 | Code | Status  | Description |
 |------|---------|-------------|
-| 200  | Success | Content is an array of [Asset](../../proto/authority/#asset) objects. |
+| 200  | Success | Content is an array of [Asset](../../../proto/authority/#asset) objects. |
 | 422  | Failure | Invalid data was provided.<br>Content is a JSON array of one or more error codes describing the problem. |
 
-## Retrieve multiple Assets by Code (bulk)
+## Retrieve Assets by code (bulk)
 
 `POST /asset/bytype/<type>/bycode`
 
-Retrieves all Assets of the given type that match the supplied list of codes.
+Retrieves the listed Assets of the given type.
 
-This is an alternative endpoint for when a large list of Asset codes needs to be provided.
+This is an alternative endpoint for providing more codes than the maximum URL length permits.
 
 ### URL Parameters
 
@@ -46,30 +46,30 @@ This is an alternative endpoint for when a large list of Asset codes needs to be
 |-----------|-------------|
 | type      | A single URL-encoded Asset Type code. |
 
-### POST Body
-
-A JSON array of strings, listing the codes of the Assets to retrieve.
-
 ### Query Parameters
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| app       | Optional | The identifier of an Application. Will only return Assets that have context data mentioning this Application.<br>Can be specified multiple times to search for multiple Applications, where any match will return a result. |
+| app       | Optional | An Application identifier. Will only return Assets with context data for this Application.<br>Can be specified multiple times to include additional Applications. |
+
+### POST Body
+
+A JSON string array, listing the Asset codes to retrieve.
 
 ### Response
 
 | Code | Status  | Description |
 |------|---------|-------------|
-| 200  | Success | Content is an array of [Asset](../../proto/authority/#asset) objects. |
+| 200  | Success | Content is an array of [Asset](../../../proto/authority/#asset) objects. |
 | 422  | Failure | Invalid data was provided.<br>Content is a JSON array of one or more error codes describing the problem. |
 
-## Delete multiple Assets by Code
+## Delete Assets by code
 
 `DELETE /asset/bytype/<type>/bycode`
 
-Deletes all Assets of the given type that match the supplied list of codes.
+Deletes the listed Assets of the given type.
 
-Alternatively, if one or more `app` codes are included, this will remove the matching Application data. Completely deleting the Asset is controlled by `deleteOnEmpty`.
+Alternatively, if one or more `app` codes are included, removes any matching context data instead. Deletion of Assets with no more context data is controlled by `deleteOnEmpty`.
 
 ### URL Parameters
 
@@ -77,16 +77,16 @@ Alternatively, if one or more `app` codes are included, this will remove the mat
 |-----------|-------------|
 | type      | A single URL-encoded Asset Type code. |
 
-### POST Body
-
-A JSON array of strings, listing the codes of the Assets to delete.
-
 ### Query Parameters
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| app       | Optional | The identifier of an Application. Will only affect Assets that have context data mentioning this Application, and will simply remove the Application from its data.<br>Can be specified multiple times to delete multiple Applications. |
-| deleteOnEmpty | Optional | A boolean true/false. If true, and one or more `app` values are provided, will delete matching Assets when no Application data remains. |
+| app       | Optional | An Application identifier. Context data for this Application will be removed from the listed Assets.<br>Can be specified multiple times to delete additional Applications. |
+| deleteOnEmpty | Optional | A boolean true/false. If true, and one or more `app` values are provided, Assets will be deleted when their context data is empty. |
+
+### POST Body
+
+A JSON string array, listing the Asset codes to delete.
 
 ### Response
 
