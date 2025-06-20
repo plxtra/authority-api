@@ -58,7 +58,7 @@ export default defineConfig({
 				},
 				{
 					label: 'Plxtra',
-					link: 'https://plxtra.org/api/authority/',
+					link: 'https://plxtra.org/api/',
 					attrs: { style: 'font-style: italic' },
 				}
 			],

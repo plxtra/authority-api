@@ -18,22 +18,19 @@ The CLI tool can provide basic documentation on the features and arguments avail
 
 *List valid Features for an Action*
 
-`Paritech.Authority.Control Help Hub`
+`Paritech.Authority.Control Help Service`
 
 *List arguments and options for a Feature*
 
 `Paritech.Authority.Control Help Asset Define`
 
-*List valid Authority services*
-
-`Paritech.Authority.Control Service List`
-
-A Service is the front-end for an installation of the Authority Service. In XOSP, this should output a single record.
-
 ## Basic Commands
 
 Full commands take the format of `Action Feature [Args]`.
 
-*Test connectivity*
+### Available Features
 
-`Paritech.Authority.Control Service Test XOSP`
+* [Asset](./asset/): Actions related to manipulation of Assets.
+* [Association](./association/): Actions related to manipulation of Associations.
+* [Service](./service/): Actions related to the Authority Services.
+* [Type](./type/): Actions related to manipulation of Asset Types.

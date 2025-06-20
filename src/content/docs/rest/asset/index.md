@@ -22,7 +22,7 @@ Retrieves all registered Assets.
 
 | Code | Status  | Description |
 |------|---------|-------------|
-| 200  | Success | Content is an array of [AssetType](../../proto/authority/#assettype) objects. |
+| 200  | Success | Content is an array of [Asset](../../proto/authority/#asset) objects. |
 | 422  | Failure | Invalid data was provided.<br>Content is a JSON array of one or more error codes describing the problem. |
 
 ## Add or update Assets

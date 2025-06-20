@@ -9,7 +9,7 @@ Then choose the API that's right for you.
 
 ## Command Line Tools
 
-Use the command line tooling for quick and easy administrative tasks, scripting, and scheduled tasks.
+Use the [command line tooling](./cli/) for quick and easy administrative tasks, scripting, and scheduled tasks.
 
 ## REST API
 

@@ -1,0 +1,92 @@
+---
+title: Asset Import
+sidebar:
+  label: Import
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+`Paritech.Authority.Control Asset Import <Service>`
+
+Defines multiple Assets by importing from a file or STDIN.
+
+:::note
+The Asset Types must exist.
+:::
+
+## Arguments
+
+| Field      | Description |
+|------------|-------------|
+| `Service`  | The Authority Service to connect to. |
+
+## Available Options
+
+| Option                | Description |
+|-----------------------|-------------|
+| `-Cols <Columns>`     | A comma-separated list of column names. Defaults to type,code. |
+| `-Enc <Encoding>`     | Input encoding. One of ASCII, UTF8 (default). |
+| `-File <FileName>`    | Read from the given file |
+| `-Format <Format>`    | Input data format. One of CSV (default), TSV, JSON. |
+| `-Header`             | The input CSV data does contain a header line. With -Cols, specify to skip the header. |
+| `-NoHeader`           | The input CSV data does not contain a header line. |
+| `-Stdin`              | Read from STDIN. Default. |
+
+:::note
+CSV (or TSV) is the recommended when importing basic Assets with limited or no context data.
+
+JSON is recommended when more complex sets of context are being provided, or when empty strings need to be provided (these are ignored in CSV).
+:::
+
+When using the CSV format, Type and Code determine the Asset. Subsequent columns provide context information based on the column header. Empty values are ignored.
+
+* `X:<AppCode>:<Key>`: Adds a Metadata value to the `AppCode` application.
+* `X:<AppCode>:<IdName>:<Key>`: Adds an ID value to the `IdName` set under the `AppCode` application.
+
+When using the JSON format, each line is interpreted as a JSON serialised [Asset](../../../proto/authority/#asset).
+
+:::caution
+Do not provide a JSON array of Asset objects. Each record should be separated by a newline.
+:::
+
+## Output
+
+The process result will be 0 on success, and a negative value on failure.
+
+## Examples
+
+<Tabs>
+<TabItem label="CSV">
+```csv
+// Assets.csv
+Type,Code,X:Zenith:Visibilities:Full,X:Zenith:Visibilities:Limited
+TradingAccount,XS:0001,,
+TradingAccount,XS:0002,,
+TradingAccount,XS:0003,,
+TradingAccount,XS:0004,,
+Market,XSX,"All&Full","Asset&Symbol,SymbolExtended,State,Pricing,Aggregates,Quantities,DepthTotals,Auction"
+```
+
+```sh title="Bulk Import Associations"
+Paritech.Authority.Control Asset Import XOSP User 1234 < Assets.csv
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+// Assets.json
+{"Type":"TradingAccount","Code":"XS:0001"}
+{"Type":"TradingAccount","Code":"XS:0002"}
+{"Type":"TradingAccount","Code":"XS:0003"}
+{"Type":"TradingAccount","Code":"XS:0004"}
+{"Type":"Market","Code":"XSX","Context":[{"Application":"Zenith","IDs":[{"Name":"Visibilities","Values":{"Full":"All&Full","Limited":"Asset&Symbol,SymbolExtended,State,Pricing,Aggregates,Quantities,DepthTotals,Auction"}}]}]}
+```
+
+```sh title="Bulk Import Associations"
+Paritech.Authority.Control Asset Import XOSP User 1234 -Format Json < Assets.json
+```
+</TabItem>
+</Tabs>
+
+## More Information
+
+Utilises the [/asset](../../../rest/asset/) API.

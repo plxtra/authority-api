@@ -1,0 +1,107 @@
+---
+title: Association Import
+sidebar:
+  label: Import
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+`Paritech.Authority.Control Association Import <Service> <FromType> <FromCode>`
+
+Defines multiple Associations from an Asset by importing from a file or STDIN.
+
+:::note
+The Asset Types must exist, but the Assets themselves do not need to exist and will be created/updated.
+:::
+
+## Arguments
+
+| Field      | Description |
+|------------|-------------|
+| `Service`  | The Authority Service to connect to. |
+| `FromType` | The type of the Asset the Association is from. |
+| `FromCode` | The unique code of the Asset the Association is from. |
+
+## Available Options
+
+These options affect the From Asset.
+
+| Option                | Description |
+|-----------------------|-------------|
+| `-App <Code>`         | Specifies metadata for an Application on the From Asset. Affects the -Meta and -ID options. Can be specified multiple times. |
+| `-ID <Name>`          | Specifies a new ID for the current App. Can be specified multiple times. |
+| `-Meta <Key> <Value>` | Supplies a metadata key/value for the current App. Can be specified multiple times. |
+| `-Val <Key> <Value>`  | Supplies a key/value for the current ID. Can be specified multiple times. |
+
+These options affect the data import of the To Assets.
+
+| Option                | Description |
+|-----------------------|-------------|
+| `-Cols <Columns>`     | A comma-separated list of column names. Defaults to type,code. |
+| `-Enc <Encoding>`     | Input encoding. One of ASCII, UTF8 (default). |
+| `-File <FileName>`    | Read from the given file |
+| `-Format <Format>`    | Input data format. One of CSV (default), TSV, JSON. |
+| `-Header`             | The input CSV data does contain a header line. With -Cols, specify to skip the header. |
+| `-NoHeader`           | The input CSV data does not contain a header line. |
+| `-Stdin`              | Read from STDIN. Default. |
+
+:::note
+CSV (or TSV) is the recommended when importing basic Associations with limited or no context data.
+
+JSON is recommended when more complex sets of context are being provided, or when empty strings need to be provided (these are ignored in CSV).
+:::
+
+When using the CSV format, Type and Code determine the To Asset. Subsequent columns provide context information based on the column header. Empty values are ignored.
+
+* `A:<AppCode>:<Key>`: Adds a Metadata value to the `AppCode` application for the Asset.
+* `A:<AppCode>:<IdName>:<Key>`: Adds an ID value to the `IdName` set under the `AppCode` application for the Asset.
+* `X:<AppCode>:<Key>`: Adds a Metadata value to the `AppCode` application for the Association.
+* `X:<AppCode>:<IdName>:<Key>`: Adds an ID value to the `IdName` set under the `AppCode` application for the Association.
+
+When using the JSON format, each line is interpreted as a JSON serialised [ToAssetAssociation](../../../proto/dto/#toassetassociation).
+
+:::caution
+Do not provide a JSON array of ToAssetAssociation objects. Each record should be separated by a newline.
+:::
+
+## Output
+
+The process result will be 0 on success, and a negative value on failure.
+
+## Examples
+
+<Tabs>
+<TabItem label="CSV">
+```csv
+// Assocations.csv
+Type,Code,X:Zenith:Visibility
+TradingAccount,XS:0001,
+TradingAccount,XS:0002,
+TradingAccount,XS:0003,
+TradingAccount,XS:0004,
+Market,XSX,Full
+```
+
+```sh title="Bulk Import Associations"
+Paritech.Authority.Control Association Import XOSP User 1234 < Associations.csv
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+// Assocations.json
+{"ToAsset":{"Type":"TradingAccount","Code":"XS:0001"}}
+{"ToAsset":{"Type":"TradingAccount","Code":"XS:0002"}}
+{"ToAsset":{"Type":"TradingAccount","Code":"XS:0003"}}
+{"ToAsset":{"Type":"TradingAccount","Code":"XS:0004"}}
+{"ToAsset":{"Type":"Market","Code":"XSX"},"Association":{"Context":[{"Application":"Zenith","Metadata":{"Visibility":"Full"}}]}}
+```
+
+```sh title="Bulk Import Associations"
+Paritech.Authority.Control Association Import XOSP User 1234 -Format Json < Associations.json
+```
+</TabItem>
+</Tabs>
+
+## More Information
+
+Utilises the [/association](../../../rest/association/from/) API.

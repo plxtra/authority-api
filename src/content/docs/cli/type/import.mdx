@@ -1,0 +1,82 @@
+---
+title: Type Import
+sidebar:
+  label: Import
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+`Paritech.Authority.Control Type Import <Service>`
+
+Defines multiple Asset Types by importing from a file or STDIN.
+
+
+## Arguments
+
+| Field      | Description |
+|------------|-------------|
+| `Service`  | The Authority Service to connect to. |
+
+## Available Options
+
+| Option                | Description |
+|-----------------------|-------------|
+| `-Cols <Columns>`     | A comma-separated list of column names. Defaults to code. |
+| `-Enc <Encoding>`     | Input encoding. One of ASCII, UTF8 (default). |
+| `-File <FileName>`    | Read from the given file |
+| `-Format <Format>`    | Input data format. One of CSV (default), TSV, JSON. |
+| `-Header`             | The input CSV data does contain a header line. With -Cols, specify to skip the header. |
+| `-NoHeader`           | The input CSV data does not contain a header line. |
+| `-Stdin`              | Read from STDIN. Default. |
+
+:::note
+CSV (or TSV) is the recommended when importing basic Asset Types with limited or no context data.
+
+JSON is recommended when more complex sets of context are being provided, or when empty strings need to be provided (these are ignored in CSV).
+:::
+
+When using the CSV format, Type and Code determine the To Asset. Subsequent columns provide context information based on the column header. Empty values are ignored.
+
+* `M:<Key>`: Adds a Metadata value to the Asset Type.
+
+When using the JSON format, each line is interpreted as a JSON serialised [AssetType](../../../proto/authority/#assettype).
+
+:::caution
+Do not provide a JSON array of AssetType objects. Each record should be separated by a newline.
+:::
+
+## Output
+
+The process result will be 0 on success, and a negative value on failure.
+
+## Examples
+
+<Tabs>
+<TabItem label="CSV">
+```csv
+// Types.csv
+Code,Meta:Disabled
+Exchange,True
+Market
+```
+
+```sh title="Bulk Import Associations"
+Paritech.Authority.Control Type Import XOSP < Types.csv
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+// Types.json
+{"Type":"Exchange","Metadata":{"Disabled":"True"}}}
+{"Type":"Market",}
+```
+
+```sh title="Bulk Import Associations"
+Paritech.Authority.Control Type Import XOSP -Format Json < Types.json
+```
+</TabItem>
+</Tabs>
+
+## More Information
+
+Utilises the [/type](../../../rest/type/) API.

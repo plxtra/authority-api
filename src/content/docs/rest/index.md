@@ -13,7 +13,7 @@ The API is offered by the Authority service, within the `plxtra/authority` Docke
 
 The REST API is broken up into a number of controllers, each for a specific resource.
 
-* Asset
-* Association
-* Service
-* Type
+* [Asset](./asset/)
+* [Association](./association/)
+* [Diagnostics](./diagnostics/)
+* [Type](./type/)
