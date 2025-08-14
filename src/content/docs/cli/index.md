@@ -16,17 +16,17 @@ The CLI tool can provide basic documentation on the features and arguments avail
 
 `Paritech.Authority.Control Help`
 
-*List valid Features for an Action*
+*List valid Actions for a Feature*
 
 `Paritech.Authority.Control Help Service`
 
-*List arguments and options for a Feature*
+*List arguments and options for an Action*
 
 `Paritech.Authority.Control Help Asset Define`
 
 ## Basic Commands
 
-Full commands take the format of `Action Feature [Args]`.
+Full commands take the format of `Feature Action [Args]`.
 
 ### Available Features
 

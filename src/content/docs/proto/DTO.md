@@ -63,4 +63,4 @@ Describes the transitive associations from a root Asset
 | No | Field | Type | Label | Description |
 | -- | ----- | ---- | ----- | ----------- |
 | 1 | Root | [Asset](../authority/#asset) |  | The root Asset being described |
-| 10 | Associations | [FullAssociation](#fullassociation) | repeated | Associations from the root asset. From Assets will not have context |
+| 10 | Associations | [FullAssociation](#fullassociation) | repeated | Transitive associations from the root asset. From Asset data will not include context |

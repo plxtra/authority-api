@@ -99,7 +99,7 @@ Alternatively, if one or more `app` codes are included, removes any matching con
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| app       | Optional | An Application identifier. Context data for this Application will be removed from the Association.<br>Can be specified multiple times to delete additional Applications. |
+| app       | Optional | An Application identifier. Context data for this Application will be removed from the Association.<br>Can be repeated to delete additional Applications. |
 | deleteOnEmpty | Optional | A boolean true/false. If true, and one or more `app` values are provided, the Association will be deleted when its context data is empty. |
 
 ### Response

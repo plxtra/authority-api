@@ -22,7 +22,7 @@ Retrieves the requested Asset, along with any direct Associations `From` that As
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| app       | Optional | An Application identifier. Will only return Associations with context data for this Application.<br>Can be specified multiple times to include additional Applications. |
+| app       | Optional | An Application identifier. Will only return Associations with context data for this Application.<br>Can be repeated to include additional Applications. |
 
 ### Response
 
@@ -59,7 +59,7 @@ This method will not remove Assets, even if they were created by a previous Asso
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| app       | Optional | An Application identifier. Context data for this Application will be removed from unlisted Associations.<br>Can be specified multiple times to delete additional Applications. |
+| app       | Optional | An Application identifier. Context data for this Application will be removed from unlisted Associations.<br>Can be repeated to delete additional Applications. |
 | deleteOnEmpty | Optional | A boolean true/false. If true, and one or more `app` values are provided, unlisted Associations will be deleted when their context data is empty. |
 
 ### POST Body

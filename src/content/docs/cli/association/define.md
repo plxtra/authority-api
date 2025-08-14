@@ -6,7 +6,7 @@ sidebar:
 
 `Paritech.Authority.Control Association Define <Service> <FromType> <FromCode> <ToType> <ToCode>`
 
-Defines an Association between two Assets.
+Defines or redefines an Association between two Assets.
 
 Any existing context data for the Assets and the Association will be merged with whatever is supplied.
 

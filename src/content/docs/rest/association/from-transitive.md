@@ -23,8 +23,8 @@ Retrieves the requested Asset, along with any transitive Associations `From` tha
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| totype    | Optional | An Asset Type code. Will only return Associations to Assets of this type.<br>Can be specified multiple times to include additional Asset Types. |
-| app       | Optional | An Application identifier. Will only return Associations with context data for this Application.<br>Can be specified multiple times to include additional Applications. |
+| totype    | Optional | An Asset Type code. Will only return Associations to Assets of this type.<br>Can be repeated to include additional Asset Types. |
+| app       | Optional | An Application identifier. Will only return Associations with context data for this Application.<br>Can be repeated to include additional Applications. |
 
 :::note
 Filtering only affects the results you receive. It does not prevent following the transitive Associations.

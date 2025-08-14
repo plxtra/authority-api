@@ -22,8 +22,8 @@ Retrieves the listed Assets of the given type.
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| code      | Optional | An Asset code. Can be specified multiple times to retrieve additional Assets. |
-| app       | Optional | An Application identifier. Will only return Assets with context data for this Application.<br>Can be specified multiple times to include additional Applications. |
+| code      | Optional | An Asset code. Can be repeated to retrieve additional Assets. |
+| app       | Optional | An Application identifier. Will only return Assets with context data for this Application.<br>Can be repeated to include additional Applications. |
 
 ### Response
 
@@ -50,7 +50,7 @@ This is an alternative endpoint for providing more codes than the maximum URL le
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| app       | Optional | An Application identifier. Will only return Assets with context data for this Application.<br>Can be specified multiple times to include additional Applications. |
+| app       | Optional | An Application identifier. Will only return Assets with context data for this Application.<br>Can be repeated to include additional Applications. |
 
 ### POST Body
 
@@ -81,7 +81,7 @@ Alternatively, if one or more `app` codes are included, removes any matching con
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| app       | Optional | An Application identifier. Context data for this Application will be removed from the listed Assets.<br>Can be specified multiple times to delete additional Applications. |
+| app       | Optional | An Application identifier. Context data for this Application will be removed from the listed Assets.<br>Can be repeated to delete additional Applications. |
 | deleteOnEmpty | Optional | A boolean true/false. If true, and one or more `app` values are provided, Assets will be deleted when their context data is empty. |
 
 ### POST Body

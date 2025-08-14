@@ -16,13 +16,13 @@ Retrieves the listed Asset Types.
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| code      | Optional | An Asset Type code. Can be specified multiple times to retrieve additional Asset Types. |
+| code      | Optional | An Asset Type code. Can be repeated to retrieve additional Asset Types. |
 
 ### Response
 
 | Code | Status  | Description |
 |------|---------|-------------|
-| 200  | Success | Content is an array of [AssetType](../../proto/authority/#assettype) objects.<br>Asset Type codes that do not match will be omitted.|
+| 200  | Success | Content is an array of [AssetType](../../proto/authority/#assettype) objects.<br>Asset Type codes that do not match will be omitted. |
 | 422  | Failure | Invalid data was provided.<br>Content is a JSON array of one or more error codes describing the problem. |
 
 ## Retrieve Asset Types by code (bulk)
@@ -41,7 +41,7 @@ A JSON string array, listing Asset Type codes to retrieve.
 
 | Code | Status  | Description |
 |------|---------|-------------|
-| 200  | Success | Content is an array of [AssetType](../../proto/authority/#assettype) objects.<br>Asset Type codes that do not match will be omitted.|
+| 200  | Success | Content is an array of [AssetType](../../proto/authority/#assettype) objects.<br>Asset Type codes that do not match will be omitted. |
 | 422  | Failure | Invalid data was provided.<br>Content is a JSON array of one or more error codes describing the problem. |
 
 ## Delete Asset Types by code

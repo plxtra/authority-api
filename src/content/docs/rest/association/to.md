@@ -23,8 +23,8 @@ Retrieves the requested Asset, along with any direct Associations `To` that Asse
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| fromtype  | Optional | An Asset Type code. Will only return Associations from Assets of this type.<br>Can be specified multiple times to include additional Asset Types. |
-| app       | Optional | An Application identifier. Will only return Associations with context data for this Application.<br>Can be specified multiple times to include additional Applications. |
+| fromtype  | Optional | An Asset Type code. Will only return Associations from Assets of this type.<br>Can be repeated to include additional Asset Types. |
+| app       | Optional | An Application identifier. Will only return Associations with context data for this Application.<br>Can be repeated to include additional Applications. |
 
 ### Response
 

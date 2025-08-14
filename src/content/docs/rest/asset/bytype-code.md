@@ -22,7 +22,7 @@ Retrieves all Assets of the given Asset Type.
 
 | Parameter | Expected | Description |
 |-----------|----------|-------------|
-| app       | Optional | An Application identifier. Will only return Assets with context data for this Application.<br>Can be specified multiple times to include additional Applications. |
+| app       | Optional | An Application identifier. Will only return Assets with context data for this Application.<br>Can be repeated to include additional Applications. |
 
 ### Response
 

@@ -1,1 +1,1 @@
-# Plxtra User Authority API Reference
+# Plxtra Authority API Reference
